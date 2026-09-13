@@ -1,0 +1,61 @@
+{
+  "source_file": "sample_data/input/sample_personal.txt",
+  "output_file": "output/processed/sample_personal_masked.txt",
+  "matched_fields": [
+    "姓名",
+    "手机号",
+    "身份证号",
+    "邮箱"
+  ],
+  "replacements": [
+    {
+      "field": "身份证号",
+      "old": "110105199001011234",
+      "new": "110105********1234"
+    },
+    {
+      "field": "手机号",
+      "old": "13812345678",
+      "new": "138****5678"
+    },
+    {
+      "field": "邮箱",
+      "old": "zhangsan@example.com",
+      "new": "zh***@example.com"
+    },
+    {
+      "field": "姓名",
+      "old": "张三",
+      "new": "[姓名]"
+    }
+  ],
+  "rules_applied": [
+    "CN-DS-001",
+    "CN-DS-002",
+    "CN-DS-003",
+    "DOC-base-001",
+    "DOC-inte-001"
+  ],
+  "algorithm_rules": [
+    {
+      "id": "ALG-001",
+      "name": "字段替换",
+      "description": "将姓名、身份证号、手机号等字段替换为标准占位符，如 [姓名]、[身份证号]。"
+    },
+    {
+      "id": "ALG-002",
+      "name": "掩码脱敏",
+      "description": "对证件号、银行卡号等长敏感字段仅保留头尾几位，并用 * 代替中间字符。"
+    },
+    {
+      "id": "ALG-003",
+      "name": "泛化处理",
+      "description": "将详细住址、日期、企业名称等泛化为区级、月度或行业级粒度。"
+    },
+    {
+      "id": "ALG-004",
+      "name": "哈希/去标识",
+      "description": "对可被重识别的低熵值使用哈希或伪匿名化，以降低组合攻击风险。"
+    }
+  ]
+}
